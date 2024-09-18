@@ -614,3 +614,8 @@ sudo systemctl status notus-scanner
 sudo systemctl status ospd-openvas
 sudo systemctl status gvmd
 sudo systemctl status gsad
+
+#Finish
+sudo greenbone-nvt-sync
+sudo greenbone-scapdata-sync
+sudo greenbone-certdata-sync
