@@ -2,7 +2,17 @@
 #Author: SaySeven
 
 if [ $USER != root ]; then
-	echo "Voce precisa ser root"
+  echo -e " .d88b. "                                  
+  echo -e " 8P  Y8 88b. .d88b 8d8b. Yb  dP .d88 d88b "
+  echo -e " 8b  d8 8  8 8.dP' 8P Y8  YbdP  8  8  Yb. "
+  echo -e "  Y88P  88P  Y88P 8   8   YP    Y88 Y88P "
+  echo -e "        8   "                              
+  echo -e " .d88b.  "                                 
+  echo -e " YPwww. .d88b Yb  dP .d88b 8d8b.  "        
+  echo -e "     d8 8.dP'  YbdP  8.dP' 8P Y8   "       
+  echo -e "  Y88P   Y88P   YP    Y88P 8   8  "
+  echo -e "                   by:SaySeven"
+	echo "            Voce precisa ser root"
 	exit
 fi
 
@@ -17,6 +27,7 @@ echo -e "     d8 8.dP'  YbdP  8.dP' 8P Y8   "
 echo -e "  Y88P   Y88P   YP    Y88P 8   8  "
 echo -e "                   by:SaySeven"
 
+apt update && apt upgrade -y
 
 #Creating a gvm system user and group
 sudo useradd -r -M -U -G sudo -s /usr/sbin/nologin gvm
