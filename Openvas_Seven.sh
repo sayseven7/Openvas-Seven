@@ -39,6 +39,10 @@ mkdir -p $SOURCE_DIR
 export BUILD_DIR=$HOME/build
 mkdir -p $BUILD_DIR
 
+#Choosing a temporary install directory
+export INSTALL_DIR=$HOME/install
+mkdir -p $INSTALL_DIR
+
 #Installing common build dependencies
 sudo apt update
 sudo apt install --no-install-recommends --assume-yes \
@@ -580,7 +584,7 @@ echo "Group=gvm" >> /root/build/gsad.service
 echo "RuntimeDirectory=gsad" >> /root/build/gsad.service
 echo "RuntimeDirectoryMode=2775" >> /root/build/gsad.service
 echo "PIDFile=/run/gsad/gsad.pid" >> /root/build/gsad.service
-echo "ExecStart=/usr/local/sbin/gsad --foreground --listen=127.0.0.1 --port=9392 --http-only" >> /root/build/gsad.service
+echo "ExecStart=/usr/local/sbin/gsad --foreground --listen=0.0.0.0 --port=9392 --http-only" >> /root/build/gsad.service
 echo "Restart=always" >> /root/build/gsad.service
 echo "TimeoutStopSec=10" >> /root/build/gsad.service
 echo "" >> /root/build/gsad.service
