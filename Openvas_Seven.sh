@@ -97,6 +97,13 @@ sudo apt install -y \
 curl -f -L https://github.com/greenbone/gvm-libs/archive/refs/tags/v$GVM_LIBS_VERSION.tar.gz -o $SOURCE_DIR/gvm-libs-$GVM_LIBS_VERSION.tar.gz
 curl -f -L https://github.com/greenbone/gvm-libs/releases/download/v$GVM_LIBS_VERSION/gvm-libs-v$GVM_LIBS_VERSION.tar.gz.asc -o $SOURCE_DIR/gvm-libs-$GVM_LIBS_VERSION.tar.gz.asc
 
+#variables
+export INSTALL_PREFIX=/usr/local
+export PATH=$PATH:$INSTALL_PREFIX/sbin
+export SOURCE_DIR=$HOME/source
+export BUILD_DIR=$HOME/build
+export INSTALL_DIR=$HOME/install
+
 #Verifying the source file
 gpg --verify $SOURCE_DIR/gvm-libs-$GVM_LIBS_VERSION.tar.gz.asc $SOURCE_DIR/gvm-libs-$GVM_LIBS_VERSION.tar.gz
 tar -C $SOURCE_DIR -xvzf $SOURCE_DIR/gvm-libs-$GVM_LIBS_VERSION.tar.gz
@@ -124,7 +131,7 @@ sudo apt install -y \
   libglib2.0-dev \
   libgnutls28-dev \
   libpq-dev \
-  postgresql-server-dev-15 \
+  postgresql-server-dev-14 \
   libical-dev \
   xsltproc \
   rsync \
@@ -158,6 +165,13 @@ sudo apt install -y --no-install-recommends \
 curl -f -L https://github.com/greenbone/gvmd/archive/refs/tags/v$GVMD_VERSION.tar.gz -o $SOURCE_DIR/gvmd-$GVMD_VERSION.tar.gz
 curl -f -L https://github.com/greenbone/gvmd/releases/download/v$GVMD_VERSION/gvmd-$GVMD_VERSION.tar.gz.asc -o $SOURCE_DIR/gvmd-$GVMD_VERSION.tar.gz.asc
 
+#variables
+export INSTALL_PREFIX=/usr/local
+export PATH=$PATH:$INSTALL_PREFIX/sbin
+export SOURCE_DIR=$HOME/source
+export BUILD_DIR=$HOME/build
+export INSTALL_DIR=$HOME/install
+
 #Verifying the source file
 gpg --verify $SOURCE_DIR/gvmd-$GVMD_VERSION.tar.gz.asc $SOURCE_DIR/gvmd-$GVMD_VERSION.tar.gz
 tar -C $SOURCE_DIR -xvzf $SOURCE_DIR/gvmd-$GVMD_VERSION.tar.gz
@@ -189,12 +203,19 @@ export PG_GVM_VERSION=22.6.1
 #Required dependencies for pg-gvm
 sudo apt install -y \
   libglib2.0-dev \
-  postgresql-server-dev-15 \
+  postgresql-server-dev-14 \
   libical-dev
 
 #Downloading the pg-gvm sources
 curl -f -L https://github.com/greenbone/pg-gvm/archive/refs/tags/v$PG_GVM_VERSION.tar.gz -o $SOURCE_DIR/pg-gvm-$PG_GVM_VERSION.tar.gz
 curl -f -L https://github.com/greenbone/pg-gvm/releases/download/v$PG_GVM_VERSION/pg-gvm-$PG_GVM_VERSION.tar.gz.asc -o $SOURCE_DIR/pg-gvm-$PG_GVM_VERSION.tar.gz.asc
+
+#variables
+export INSTALL_PREFIX=/usr/local
+export PATH=$PATH:$INSTALL_PREFIX/sbin
+export SOURCE_DIR=$HOME/source
+export BUILD_DIR=$HOME/build
+export INSTALL_DIR=$HOME/install
 
 #Verifying the source file
 gpg --verify $SOURCE_DIR/pg-gvm-$PG_GVM_VERSION.tar.gz.asc $SOURCE_DIR/pg-gvm-$PG_GVM_VERSION.tar.gz
@@ -219,6 +240,13 @@ export GSA_VERSION=22.8.0
 curl -f -L https://github.com/greenbone/gsa/releases/download/v$GSA_VERSION/gsa-dist-$GSA_VERSION.tar.gz -o $SOURCE_DIR/gsa-$GSA_VERSION.tar.gz
 curl -f -L https://github.com/greenbone/gsa/releases/download/v$GSA_VERSION/gsa-dist-$GSA_VERSION.tar.gz.asc -o $SOURCE_DIR/gsa-$GSA_VERSION.tar.gz.asc
 
+#variables
+export INSTALL_PREFIX=/usr/local
+export PATH=$PATH:$INSTALL_PREFIX/sbin
+export SOURCE_DIR=$HOME/source
+export BUILD_DIR=$HOME/build
+export INSTALL_DIR=$HOME/install
+
 #Verifying the source files
 gpg --verify $SOURCE_DIR/gsa-$GSA_VERSION.tar.gz.asc $SOURCE_DIR/gsa-$GSA_VERSION.tar.gz
 mkdir -p $SOURCE_DIR/gsa-$GSA_VERSION
@@ -241,6 +269,13 @@ sudo apt install -y \
 #Downloading the gsad sources
 curl -f -L https://github.com/greenbone/gsad/archive/refs/tags/v$GSAD_VERSION.tar.gz -o $SOURCE_DIR/gsad-$GSAD_VERSION.tar.gz
 curl -f -L https://github.com/greenbone/gsad/releases/download/v$GSAD_VERSION/gsad-$GSAD_VERSION.tar.gz.asc -o $SOURCE_DIR/gsad-$GSAD_VERSION.tar.gz.asc
+
+#variables
+export INSTALL_PREFIX=/usr/local
+export PATH=$PATH:$INSTALL_PREFIX/sbin
+export SOURCE_DIR=$HOME/source
+export BUILD_DIR=$HOME/build
+export INSTALL_DIR=$HOME/install
 
 #Verifying the source files
 gpg --verify $SOURCE_DIR/gsad-$GSAD_VERSION.tar.gz.asc $SOURCE_DIR/gsad-$GSAD_VERSION.tar.gz
@@ -280,6 +315,13 @@ sudo apt install -y \
 #Downloading the openvas-smb sources
 curl -f -L https://github.com/greenbone/openvas-smb/archive/refs/tags/v$OPENVAS_SMB_VERSION.tar.gz -o $SOURCE_DIR/openvas-smb-$OPENVAS_SMB_VERSION.tar.gz
 curl -f -L https://github.com/greenbone/openvas-smb/releases/download/v$OPENVAS_SMB_VERSION/openvas-smb-v$OPENVAS_SMB_VERSION.tar.gz.asc -o $SOURCE_DIR/openvas-smb-$OPENVAS_SMB_VERSION.tar.gz.asc
+
+#variables
+export INSTALL_PREFIX=/usr/local
+export PATH=$PATH:$INSTALL_PREFIX/sbin
+export SOURCE_DIR=$HOME/source
+export BUILD_DIR=$HOME/build
+export INSTALL_DIR=$HOME/install
 
 #Verifying the source file
 gpg --verify $SOURCE_DIR/openvas-smb-$OPENVAS_SMB_VERSION.tar.gz.asc $SOURCE_DIR/openvas-smb-$OPENVAS_SMB_VERSION.tar.gz
@@ -323,6 +365,13 @@ sudo apt install -y \
 #Downloading the openvas-scanner sources
 curl -f -L https://github.com/greenbone/openvas-scanner/archive/refs/tags/v$OPENVAS_SCANNER_VERSION.tar.gz -o $SOURCE_DIR/openvas-scanner-$OPENVAS_SCANNER_VERSION.tar.gz
 curl -f -L https://github.com/greenbone/openvas-scanner/releases/download/v$OPENVAS_SCANNER_VERSION/openvas-scanner-v$OPENVAS_SCANNER_VERSION.tar.gz.asc -o $SOURCE_DIR/openvas-scanner-$OPENVAS_SCANNER_VERSION.tar.gz.asc
+
+#variables
+export INSTALL_PREFIX=/usr/local
+export PATH=$PATH:$INSTALL_PREFIX/sbin
+export SOURCE_DIR=$HOME/source
+export BUILD_DIR=$HOME/build
+export INSTALL_DIR=$HOME/install
 
 #Verifying the source file
 gpg --verify $SOURCE_DIR/openvas-scanner-$OPENVAS_SCANNER_VERSION.tar.gz.asc $SOURCE_DIR/openvas-scanner-$OPENVAS_SCANNER_VERSION.tar.gz
@@ -369,6 +418,13 @@ sudo apt install -y \
 curl -f -L https://github.com/greenbone/ospd-openvas/archive/refs/tags/v$OSPD_OPENVAS_VERSION.tar.gz -o $SOURCE_DIR/ospd-openvas-$OSPD_OPENVAS_VERSION.tar.gz
 curl -f -L https://github.com/greenbone/ospd-openvas/releases/download/v$OSPD_OPENVAS_VERSION/ospd-openvas-v$OSPD_OPENVAS_VERSION.tar.gz.asc -o $SOURCE_DIR/ospd-openvas-$OSPD_OPENVAS_VERSION.tar.gz.asc
 
+#variables
+export INSTALL_PREFIX=/usr/local
+export PATH=$PATH:$INSTALL_PREFIX/sbin
+export SOURCE_DIR=$HOME/source
+export BUILD_DIR=$HOME/build
+export INSTALL_DIR=$HOME/install
+
 #Verifying the source files
 gpg --verify $SOURCE_DIR/ospd-openvas-$OSPD_OPENVAS_VERSION.tar.gz.asc $SOURCE_DIR/ospd-openvas-$OSPD_OPENVAS_VERSION.tar.gz
 tar -C $SOURCE_DIR -xvzf $SOURCE_DIR/ospd-openvas-$OSPD_OPENVAS_VERSION.tar.gz
@@ -394,6 +450,13 @@ sudo apt install -y \
 #Downloading the notus-scanner sources
 curl -f -L https://github.com/greenbone/notus-scanner/archive/refs/tags/v$NOTUS_VERSION.tar.gz -o $SOURCE_DIR/notus-scanner-$NOTUS_VERSION.tar.gz
 curl -f -L https://github.com/greenbone/notus-scanner/releases/download/v$NOTUS_VERSION/notus-scanner-v$NOTUS_VERSION.tar.gz.asc -o $SOURCE_DIR/notus-scanner-$NOTUS_VERSION.tar.gz.asc
+
+#variables
+export INSTALL_PREFIX=/usr/local
+export PATH=$PATH:$INSTALL_PREFIX/sbin
+export SOURCE_DIR=$HOME/source
+export BUILD_DIR=$HOME/build
+export INSTALL_DIR=$HOME/install
 
 #Verifying the source files
 gpg --verify $SOURCE_DIR/notus-scanner-$NOTUS_VERSION.tar.gz.asc $SOURCE_DIR/notus-scanner-$NOTUS_VERSION.tar.gz
