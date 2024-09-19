@@ -553,7 +553,7 @@ echo -n "%gvm ALL = NOPASSWD: /usr/local/sbin/openvas" >> /etc/sudoers
 sudo apt install -y postgresql
 
 #Starting the PostgreSQL database server
-sudo systemctl start postgresql@15-main
+sudo systemctl start postgresql@14-main
 
 #Changing to the postgres user
 #Setting up database permissions and extensions
@@ -694,6 +694,6 @@ sudo systemctl status gvmd
 sudo systemctl status gsad
 
 #Finish
-sudo greenbone-nvt-sync
-sudo greenbone-scapdata-sync
-sudo greenbone-certdata-sync
+#sudo greenbone-nvt-sync
+#sudo greenbone-scapdata-sync
+#sudo greenbone-certdata-sync
