@@ -695,12 +695,18 @@ sudo systemctl enable gsad
 #Making systemd aware of the new service files
 sudo systemctl daemon-reload
 
+#Stop the services
+sudo systemctl stop notus-scanner
+sudo systemctl stop ospd-openvas
+sudo systemctl stop gvmd
+sudo systemctl stop gsad
+
 #Finish
 sudo greenbone-nvt-sync
 sudo greenbone-scapdata-sync
 sudo greenbone-certdata-sync
 
-#Finally starting the services
+#Restart the services
 sudo systemctl restart notus-scanner
 sudo systemctl restart ospd-openvas
 sudo systemctl restart gvmd
