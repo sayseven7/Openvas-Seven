@@ -692,13 +692,22 @@ sudo systemctl enable ospd-openvas
 sudo systemctl enable gvmd
 sudo systemctl enable gsad
 
+#Making systemd aware of the new service files
+sudo systemctl daemon-reload
+
+#Finish
+sudo greenbone-nvt-sync
+sudo greenbone-scapdata-sync
+sudo greenbone-certdata-sync
+
+#Finally starting the services
+sudo systemctl restart notus-scanner
+sudo systemctl restart ospd-openvas
+sudo systemctl restart gvmd
+sudo systemctl restart gsad
+
 #Checking the status of the services
 sudo systemctl status notus-scanner
 sudo systemctl status ospd-openvas
 sudo systemctl status gvmd
-sudo systemctl status gsad
-
-#Finish
-#sudo greenbone-nvt-sync
-#sudo greenbone-scapdata-sync
-#sudo greenbone-certdata-sync
+sudo systemctl status gsad 
