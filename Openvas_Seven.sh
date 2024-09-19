@@ -571,7 +571,7 @@ sudo -u postgres psql gvmd -c "create role dba with superuser noinherit; grant d
 /usr/local/sbin/gvmd --create-user=admin --password=admin
 
 #Setting the Feed Import Owner
-/usr/local/sbin/gvmd --modify-setting 78eceaec-3385-11ea-b237-28d24461215b --value  "/usr/local/sbin/gvmd --get-users --verbose | grep admin | awk '{print $2}'"
+/usr/local/sbin/gvmd --modify-setting 78eceaec-3385-11ea-b237-28d24461215b --value `/usr/local/sbin/gvmd --get-users --verbose | grep admin | awk '{print $2}'`
 
 #Systemd service file for ospd-openvas
 echo "[Unit]" > /root/build/ospd-openvas.service
