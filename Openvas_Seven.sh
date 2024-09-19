@@ -557,7 +557,12 @@ sudo systemctl start postgresql@14-main
 
 #Changing to the postgres user
 #Setting up database permissions and extensions
-sudo -u postgres createuser -DRS gvm && sudo -u postgres createdb -O gvm gvmd && sudo -u postgres psql gvmd -c "create role dba with superuser noinherit; grant dba to gvm"
+cd /var/lib/postgresql
+sudo -u postgres createuser -DRS gvm
+sudo -u postgres createdb -O gvm gvmd
+sudo -u postgres psql gvmd -c "create role dba with superuser noinherit; grant dba to gvm"
+
+#sudo -u postgres createuser -DRS gvm && sudo -u postgres createdb -O gvm gvmd && sudo -u postgres psql gvmd -c "create role dba with superuser noinherit; grant dba to gvm"
 
 #Creating an administrator user with generated password
 /usr/local/sbin/gvmd --create-user=admin
