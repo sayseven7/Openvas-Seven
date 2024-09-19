@@ -1,5 +1,5 @@
 #!/bin/bash
-#Author: SaySeven
+#Author: SaySeven && Corvo
 
 if [ $USER != root ]; then
   echo -e " .d88b. "                                  
