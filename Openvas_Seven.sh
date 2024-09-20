@@ -531,6 +531,8 @@ sudo chmod -R g+srw /var/lib/gvm
 sudo chmod -R g+srw /var/lib/openvas
 sudo chmod -R g+srw /var/log/gvm
 
+sleep 5
+
 #Adjusting gvmd permissions
 sudo chown gvm:gvm /usr/local/sbin/gvmd
 sudo chmod 6750 /usr/local/sbin/gvmd
@@ -549,6 +551,8 @@ sudo chown -R gvm:gvm $OPENVAS_GNUPG_HOME
 # allow users of the gvm group run openvas
 echo -n "%gvm ALL = NOPASSWD: /usr/local/sbin/openvas" >> /etc/sudoers
 
+sleep 5
+
 #Installing the PostgreSQL server
 sudo apt install -y postgresql
 
@@ -563,6 +567,8 @@ cd /var/lib/postgresql
 #sudo -u postgres psql gvmd -c "create role dba with superuser noinherit; grant dba to gvm"
 
 sudo -u postgres createuser -DRS gvm && sudo -u postgres createdb -O gvm gvmd && sudo -u postgres psql gvmd -c "create role dba with superuser noinherit; grant dba to gvm"
+
+sleep 5
 
 #Creating an administrator user with generated password
 /usr/local/sbin/gvmd --create-user=admin
@@ -682,6 +688,8 @@ sudo systemctl daemon-reload
 #Downloading the data from the Greenbone Community Feed
 sudo /usr/local/bin/greenbone-feed-sync
 
+sleep 5
+
 #Finally starting the services
 sudo systemctl start notus-scanner
 sudo systemctl start ospd-openvas
@@ -703,6 +711,8 @@ sudo systemctl stop ospd-openvas
 sudo systemctl stop gvmd
 sudo systemctl stop gsad
 
+sleep 5
+
 #Finish
 sudo greenbone-feed-sync --type GVMD_DATA
 sudo greenbone-feed-sync --type SCAP
@@ -714,28 +724,12 @@ sudo systemctl stop ospd-openvas
 sudo systemctl stop gvmd
 sudo systemctl stop gsad
 
+sleep 5
+
 #Finish
 sudo greenbone-nvt-sync
 sudo greenbone-scapdata-sync
 sudo greenbone-certdata-sync
-
-#Stop the services
-sudo systemctl stop notus-scanner
-sudo systemctl stop ospd-openvas
-sudo systemctl stop gvmd
-sudo systemctl stop gsad
-
-#Adjusting directory permissions
-sudo chown -R gvm:gvm /var/lib/gvm
-sudo chown -R gvm:gvm /var/lib/openvas
-sudo chown -R gvm:gvm /var/lib/notus
-sudo chown -R gvm:gvm /var/log/gvm
-sudo chown -R gvm:gvm /run/gvmd
-sudo chmod -R g+srw /var/lib/gvm
-sudo chmod -R g+srw /var/lib/openvas
-sudo chmod -R g+srw /var/log/gvm
-sudo chown gvm:gvm /usr/local/sbin/gvmd
-sudo chmod 6750 /usr/local/sbin/gvmd
 
 #Starting the PostgreSQL database server
 sudo systemctl start postgresql@14-main
@@ -743,11 +737,20 @@ sudo systemctl start postgresql@14-main
 #Setting the Feed Import Owner
 /usr/local/sbin/gvmd --modify-setting 78eceaec-3385-11ea-b237-28d24461215b --value `/usr/local/sbin/gvmd --get-users --verbose | grep admin | awk '{print $2}'`
 
+sleep 5
+
+#Stop the services
+sudo service gvmd stop
+
+sleep 5
+
 #Making systemd aware of the new service files
 sudo systemctl daemon-reload
 
 #Downloading the data from the Greenbone Community Feed
 sudo /usr/local/bin/greenbone-feed-sync
+
+sleep 5
 
 #Finally starting the services
 sudo systemctl start notus-scanner
