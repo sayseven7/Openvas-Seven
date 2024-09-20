@@ -719,11 +719,41 @@ sudo greenbone-nvt-sync
 sudo greenbone-scapdata-sync
 sudo greenbone-certdata-sync
 
-#Restart the services
-sudo systemctl restart notus-scanner
-sudo systemctl restart ospd-openvas
-sudo systemctl restart gvmd
-sudo systemctl restart gsad
+#Stop the services
+sudo systemctl stop notus-scanner
+sudo systemctl stop ospd-openvas
+sudo systemctl stop gvmd
+sudo systemctl stop gsad
+
+#Adjusting directory permissions
+sudo chown -R gvm:gvm /var/lib/gvm
+sudo chown -R gvm:gvm /var/lib/openvas
+sudo chown -R gvm:gvm /var/lib/notus
+sudo chown -R gvm:gvm /var/log/gvm
+sudo chown -R gvm:gvm /run/gvmd
+sudo chmod -R g+srw /var/lib/gvm
+sudo chmod -R g+srw /var/lib/openvas
+sudo chmod -R g+srw /var/log/gvm
+sudo chown gvm:gvm /usr/local/sbin/gvmd
+sudo chmod 6750 /usr/local/sbin/gvmd
+
+#Starting the PostgreSQL database server
+sudo systemctl start postgresql@14-main
+
+#Setting the Feed Import Owner
+/usr/local/sbin/gvmd --modify-setting 78eceaec-3385-11ea-b237-28d24461215b --value `/usr/local/sbin/gvmd --get-users --verbose | grep admin | awk '{print $2}'`
+
+#Making systemd aware of the new service files
+sudo systemctl daemon-reload
+
+#Downloading the data from the Greenbone Community Feed
+sudo /usr/local/bin/greenbone-feed-sync
+
+#Finally starting the services
+sudo systemctl start notus-scanner
+sudo systemctl start ospd-openvas
+sudo systemctl start gvmd
+sudo systemctl start gsad
 
 #Checking the status of the services
 sudo systemctl status notus-scanner
