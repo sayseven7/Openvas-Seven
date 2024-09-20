@@ -704,6 +704,17 @@ sudo systemctl stop gvmd
 sudo systemctl stop gsad
 
 #Finish
+sudo greenbone-feed-sync --type GVMD_DATA
+sudo greenbone-feed-sync --type SCAP
+sudo greenbone-feed-sync --type CERT
+
+#Stop the services
+sudo systemctl stop notus-scanner
+sudo systemctl stop ospd-openvas
+sudo systemctl stop gvmd
+sudo systemctl stop gsad
+
+#Finish
 sudo greenbone-nvt-sync
 sudo greenbone-scapdata-sync
 sudo greenbone-certdata-sync
