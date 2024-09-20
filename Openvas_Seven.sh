@@ -577,8 +577,8 @@ sleep 5
 /usr/local/sbin/gvmd --create-user=admin --password=admin
 
 #Setting the Feed Import Owner
-#/usr/local/sbin/gvmd --modify-setting 78eceaec-3385-11ea-b237-28d24461215b --value `/usr/local/sbin/gvmd --get-users --verbose | grep admin | awk '{print $2}'`
-/usr/local/sbin/gvmd --modify-setting 78eceaec-3385-11ea-b237-28d24461215b --value "/usr/local/sbin/gvmd --get-users --verbose | grep admin | awk '{print $2}'"
+/usr/local/sbin/gvmd --modify-setting 78eceaec-3385-11ea-b237-28d24461215b --value `/usr/local/sbin/gvmd --get-users --verbose | grep admin | awk '{print $2}'`
+#/usr/local/sbin/gvmd --modify-setting 78eceaec-3385-11ea-b237-28d24461215b --value "/usr/local/sbin/gvmd --get-users --verbose | grep admin | awk '{print $2}'"
 
 
 #Systemd service file for ospd-openvas
@@ -705,58 +705,13 @@ sudo systemctl enable gsad
 #Making systemd aware of the new service files
 sudo systemctl daemon-reload
 
-#Stop the services
-sudo systemctl stop notus-scanner
-sudo systemctl stop ospd-openvas
-sudo systemctl stop gvmd
-sudo systemctl stop gsad
-
-sleep 5
-
-#Finish
-sudo greenbone-feed-sync --type GVMD_DATA
-sudo greenbone-feed-sync --type SCAP
-sudo greenbone-feed-sync --type CERT
-
-#Stop the services
-sudo systemctl stop notus-scanner
-sudo systemctl stop ospd-openvas
-sudo systemctl stop gvmd
-sudo systemctl stop gsad
-
-sleep 5
-
-#Finish
+service gvmd stop
 sudo greenbone-nvt-sync
 sudo greenbone-scapdata-sync
 sudo greenbone-certdata-sync
 
-#Starting the PostgreSQL database server
-sudo systemctl start postgresql@14-main
-
-#Setting the Feed Import Owner
-/usr/local/sbin/gvmd --modify-setting 78eceaec-3385-11ea-b237-28d24461215b --value `/usr/local/sbin/gvmd --get-users --verbose | grep admin | awk '{print $2}'`
-
-sleep 5
-
-#Stop the services
-sudo service gvmd stop
-
-sleep 5
-
-#Making systemd aware of the new service files
+service gvmd start
 sudo systemctl daemon-reload
-
-#Downloading the data from the Greenbone Community Feed
-sudo /usr/local/bin/greenbone-feed-sync
-
-sleep 5
-
-#Finally starting the services
-sudo systemctl start notus-scanner
-sudo systemctl start ospd-openvas
-sudo systemctl start gvmd
-sudo systemctl start gsad
 
 #Checking the status of the services
 sudo systemctl status notus-scanner
