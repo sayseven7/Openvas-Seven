@@ -574,10 +574,10 @@ sleep 5
 /usr/local/sbin/gvmd --create-user=admin
 
 #Creating an administrator user with provided password
-/usr/local/sbin/gvmd --create-user=admin --password=admin
+/usr/local/sbin/gvmd --user=admin --new-password=admin
 
 #Setting the Feed Import Owner
-/usr/local/sbin/gvmd --modify-setting 78eceaec-3385-11ea-b237-28d24461215b --value `/usr/local/sbin/gvmd --get-users --verbose | grep admin | awk '{print $2}'`
+sudo /usr/local/sbin/gvmd --modify-setting 78eceaec-3385-11ea-b237-28d24461215b --value `/usr/local/sbin/gvmd --get-users --verbose | grep admin | awk '{print $2}'`
 #/usr/local/sbin/gvmd --modify-setting 78eceaec-3385-11ea-b237-28d24461215b --value "/usr/local/sbin/gvmd --get-users --verbose | grep admin | awk '{print $2}'"
 
 
